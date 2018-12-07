@@ -1,13 +1,43 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=GBK"/>
     <script type="text/javascript">
-      joyuweb.addGroup('0', 0, 0, 1000, 400);
-      joyuweb.addImgView('0', '0', 10, 10, 198, 347, 'http://112.50.251.22:8090/assets/img/poster/recommend/ap8_0.png', 'http://112.50.251.22:8090/assets/img/poster/recommend/dddd4.png');
+      joyuweb.addGroup('group0', 0, 0, 1000, 400)
+      addImgView('group0', 'img0', 50, 30, 198, 347, 'http://112.50.251.22:8090/assets/img/poster/recommend/ap8_0.png')
     </script>
     <title>测试页面</title>
 </head>
 <body>
+<a onClick="window.joyuweb.addGroup('group0', 0, 0, 1000, 400)">添加容器0</a>&nbsp;
+<a onClick="window.joyuweb.removeGoup('group0')">移除容器0</a>&nbsp;
+<a onClick="window.joyuweb.addImgView('group0', 'img0', 50, 30, 198, 347, 'http://112.50.251.22:8090/assets/img/poster/recommend/ap8_0.png')">往容器0添加图片0</a>&nbsp;
+<a onClick="window.joyuweb.removeView('img0')">移除图片0</a>&nbsp;
+<a onClick="window.joyuweb.groupVisible('group0', true)">显示容器0</a>&nbsp;
+<a onClick="window.joyuweb.groupVisible('group0', false)">隐藏容器0</a>&nbsp;
+<a onClick="window.joyuweb.viewVisible('img0', true)">显示图片0</a>&nbsp;
+<a onClick="window.joyuweb.viewVisible('img0', false)">隐藏图片0</a>&nbsp;
+<a onClick="window.joyuweb.addGroup('group1', 0, 410, 1000, 400)">添加容器1</a>&nbsp;
+<a onClick="window.joyuweb.removeGoup('group1')">移除容器1</a>&nbsp;
+<a onClick="window.joyuweb.addImgView('group1', 'img1', 10, 10, 198, 347, 'http://112.50.251.22:8090/assets/img/poster/recommend/ap8_0.png')">往容器1添加图片1</a>&nbsp;
+<a onClick="window.joyuweb.removeView('img1')">移除图片1</a>&nbsp;
+<a onClick="window.joyuweb.addTxtView('group1', 'txt1', 210, 100, 300, 100, 20, '文本1', '#ff0000', '#00ff00')">往容器1添加文本1</a>&nbsp;
+<a onClick="window.joyuweb.removeView('txt1')">移除文本1</a>&nbsp;
+<a onClick="window.joyuweb.addTxtView('group1', 'txt2', 210, 357, 300, 100, 20, '文本2', '#ff0000', '#00ff00')">往容器1添加文本2</a>&nbsp;
+<a onClick="window.joyuweb.removeView('txt2')">移除文本2</a>&nbsp;
+<a onClick="window.joyuweb.scrollTo('group1', 210, 100)">容器1滚动到纵坐标(210, 100)</a>&nbsp;
+<a onClick="window.joyuweb.scrollTo('group1', 210, 100, 500)">容器1滚动到纵坐标(210, 100, 500)</a>&nbsp;
+<!--<a onClick="window.joyuweb.setImg('img0', 'https://qq1728744610.github.io/TestHtml/1541057347011242.gif')">修改图片0的地址</a>&nbsp;-->
+<a onClick="window.joyuweb.setImg('img0', 'http://112.50.251.22:8081/assets/img/poster/recommend/154105734701018.png')">修改图片0的地址</a>&nbsp;
+<a onclick="window.joyuweb.zoomView('img0', 1, 1.5, 200)">图片0放大1.5倍</a>&nbsp;
+<a onclick="window.joyuweb.zoomView('img0', 1.5, 1, 200)">图片0恢复大小</a>&nbsp;
+<!--public void moveFrame(final int left, final int top, final int width, final int height, final int radius)-->
+<a onclick="window.joyuweb.moveFrame(20, 300, 100, 50, 10)">1移动飞框</a>&nbsp;
+<a onclick="window.joyuweb.moveFrame(340, 360, 200, 200, 20)">2移动飞框</a>&nbsp;
+<a onclick="window.joyuweb.moveFrame(150, 570, 100, 100, 100)">3移动飞框</a>&nbsp;
+<a onClick="window.joyuweb.addGroup('group0', 'group2', 0, 0, 300, 400)">往容器0添加容器2</a>&nbsp;
+<a onClick="window.joyuweb.removeGoup('group2')">移除容器2</a>&nbsp;
+<a onClick="window.joyuweb.addImgView('group2', 'img2', 50, 30, 198, 347, 'http://112.50.251.22:8090/assets/img/poster/recommend/ap8_0.png')">往容器2添加图片2</a>&nbsp;
+<a onClick="window.joyuweb.removeView('img2')">移除图片2</a>&nbsp;
 </body>
 </html>

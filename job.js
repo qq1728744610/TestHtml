@@ -9,7 +9,7 @@ startTest();
 function startTest(){
     for(var i = 0; i < 10000 ; i++){
         postMessage(i);
-        sleep(100);
+        sleep(50);
     }
  }
 

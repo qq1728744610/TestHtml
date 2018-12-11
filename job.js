@@ -1,14 +1,19 @@
+var i = 0;
+setInterval(interval, 100);
+
+function interval(){ 
+     postMessage(i);
+     i++; 
+}
+
 //startTest()
-setInterval(startTest,100);
 
 function startTest(){
     for(var i = 0; i < 10000 ; i++){
         postMessage(i)
-        //sleep(50);
+        sleep(50);
     }
  }
-
-
 
 /**
  *  睡眠函数

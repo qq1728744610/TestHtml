@@ -22,14 +22,16 @@
                 'http://112.50.251.22:8090/assets/img/poster/recommend/fp9_0.png']
 		   
          var worker = new Worker("job.js");
+	 var count = 1;
          worker.onmessage = function(event){
             <!--alert("收到消息"+event.data)-->
 	    var index = event.data
             if(index === 0){
 		window.joyuweb.addGroup('group0', 0, 0, 1280, 720);
             	window.joyuweb.addImgView('group0', 'img0', 0, 0, -2, -2, 'http://112.50.251.22:8081/assets/img/poster/recommend/1529394085957413.png');
-	      }else if(index < 800){
+	      }else if(count <= 800){
 		window.joyuweb.addImgView('group0', 'img'+1, 0, 0, -2, -2, 'http://112.50.251.22:8081/assets/img/poster/recommend/1529394085957413.png');
+		count++;
 	      }
 	    window.joyuweb.setImg('img0', imgUrls[index%imgUrls.length]);
            };

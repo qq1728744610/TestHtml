@@ -1,12 +1,11 @@
-var i = 0;
-function interval(){ 
-     postMessage(i);
-     i++; 
-}
-var id = setInterval("interval()", 100);
+// var i = 0;
+// function interval(){ 
+//      postMessage(i);
+//      i++; 
+// }
+// var id = setInterval("interval()", 100);
 
-//startTest()
-
+startTest()
 function startTest(){
     for(var i = 0; i < 10000 ; i++){
         postMessage(i)

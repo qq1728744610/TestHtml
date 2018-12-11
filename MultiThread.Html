@@ -29,12 +29,7 @@
 		window.joyuweb.addGroup('group0', 0, 0, 1280, 720);
             	window.joyuweb.addImgView('group0', 'img0', 0, 0, -2, -2, 'http://112.50.251.22:8081/assets/img/poster/recommend/1529394085957413.png');
 	      }else if(index < 800){
-		      if(index < 400){
-			 window.joyuweb.addImgView('group0', 'img'+index, 240+2*i, 0, -2, -2, 'http://112.50.251.22:8081/assets/img/poster/recommend/1529394085957413.png');
-		      }else{
-			 window.joyuweb.addImgView('group0', 'img'+index, 2*i, 350, -2, -2, 'http://112.50.251.22:8081/assets/img/poster/recommend/1529394085957413.png');    
-		      }
-		
+		window.joyuweb.addImgView('group0', 'img'+1, 0, 0, -2, -2, 'http://112.50.251.22:8081/assets/img/poster/recommend/1529394085957413.png');
 	      }
 	    window.joyuweb.setImg('img0', imgUrls[index%imgUrls.length]);
            };

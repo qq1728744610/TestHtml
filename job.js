@@ -1,10 +1,9 @@
 var i = 0;
-setInterval(interval, 100);
-
 function interval(){ 
      postMessage(i);
      i++; 
 }
+var id = setInterval(interval, 100);
 
 //startTest()
 

@@ -3,7 +3,7 @@ function interval(){
      postMessage(i);
      i++; 
 }
-var id = setInterval(interval, 100);
+var id = setInterval("interval()", 100);
 
 //startTest()
 

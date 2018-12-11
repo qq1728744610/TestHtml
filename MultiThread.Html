@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html"/>
+    <script type="text/javascript">
+         <!--if(typeof(Worker)!=="undefined"){-->
+            <!--alert("支持多线程")-->
+         <!--}else{-->
+            <!--alert("不支持多线程")-->
+         <!--}-->
+
+         var worker = new Worker("job.js");
+         worker.onmessage = function(event){
+            alert("收到消息")
+            <!--&lt;!&ndash;event.data;&ndash;&gt;-->
+            <!--joyuweb.addGroup('group0', 0, 0, 1280, 720)-->
+            <!--joyuweb.addImgView('group0', 'img0', 0, 0, -2, -2, 'http://112.50.251.22:8081/assets/img/poster/recommend/1529394085957413.png')-->
+         };
+
+		 <!--&lt;!&ndash;startTest()&ndash;&gt;-->
+
+		 <!--function startTest(){-->
+            <!--var imgUrls = ['http://112.50.251.22:8090/assets/img/poster/recommend/ddd.png',-->
+                <!--'http://112.50.251.22:8090/assets/img/poster/recommend/ddd1.png',-->
+                <!--'http://112.50.251.22:8090/assets/img/poster/recommend/ddd3.png',-->
+                <!--'http://112.50.251.22:8090/assets/img/poster/recommend/dddd2.png',-->
+                <!--'http://112.50.251.22:8090/assets/img/poster/recommend/dddd4.png',-->
+                <!--'http://112.50.251.22:8090/assets/img/poster/recommend/dddd5.png',-->
+                <!--'http://112.50.251.22:8090/assets/img/poster/recommend/fp4_0.png',-->
+                <!--'http://112.50.251.22:8090/assets/img/poster/recommend/fp5_0.png',-->
+                <!--'http://112.50.251.22:8090/assets/img/poster/recommend/fp6_0.png',-->
+                <!--'http://112.50.251.22:8090/assets/img/poster/recommend/fp7_0.png',-->
+                <!--'http://112.50.251.22:8090/assets/img/poster/recommend/fp8_0.png',-->
+                <!--'http://112.50.251.22:8090/assets/img/poster/recommend/fp9_0.png']-->
+
+            <!--joyuweb.addGroup('group0', 0, 0, 1280, 720)-->
+            <!--joyuweb.addImgView('group0', 'img0', 0, 0, -2, -2, '')-->
+            <!--for(var i = 0; i < 200 ; i++){-->
+                <!--joyuweb.setImg('img0', imgUrls[i%12]);-->
+                <!--sleep(50);-->
+            <!--}-->
+
+            <!--joyuweb.addImgView('group0', 'img1', 0, 500, -2, -2, 'http://112.50.251.22:8081/assets/img/poster/recommend/1529394085957413.png')-->
+        <!--}-->
+
+        <!--/**-->
+        <!--*  睡眠函数-->
+        <!--*  @param numberMillis &#45;&#45; 要睡眠的毫秒数-->
+        <!--*/-->
+        <!--function sleep(numberMillis) {-->
+            <!--var now = new Date();-->
+            <!--var exitTime = now.getTime() + numberMillis;-->
+            <!--while (true) {-->
+                <!--now = new Date();-->
+                <!--if (now.getTime() > exitTime)-->
+                    <!--return;-->
+                <!--}-->
+        <!--}-->
+    </script>
+    <title>测试页面</title>
+</head>
+<body>
+<a onClick="window.joyuweb.addGroup('group0', 0, 0, 1000, 600)">添加容器0</a>&nbsp;
+<a onClick="window.joyuweb.removeGoup('group0')">移除容器0</a>&nbsp;
+<a onClick="window.joyuweb.addImgView('group0', 'img0', 0, 0, 178, 238, 'http://112.50.251.22:8090/assets/img/poster/recommend/ap8_0.png')">往容器0添加图片0</a>&nbsp;
+<!--<a onClick="window.joyuweb.addImgView('group0', 'img0', 50, 30, -2, -2, '')">往容器0添加图片0</a>&nbsp;-->
+<a onClick="window.joyuweb.removeView('img0')">移除图片0</a>&nbsp;
+<a onClick="window.joyuweb.groupVisible('group0', true)">显示容器0</a>&nbsp;
+<a onClick="window.joyuweb.groupVisible('group0', false)">隐藏容器0</a>&nbsp;
+<a onClick="window.joyuweb.setImg('img0', 'http://112.50.251.22:8090/assets/img/poster/recommend/ddd1.png')">修改图片0的地址</a>&nbsp;
+<a onClick="window.joyuweb.viewVisible('img0', true)">显示图片0</a>&nbsp;
+<a onClick="window.joyuweb.viewVisible('img0', false)">隐藏图片0</a>&nbsp;
+<a onClick="window.joyuweb.moveView('img0', 100, 100)">图片0移动到坐标(100,100)</a>&nbsp;
+<a onClick="window.joyuweb.addGroup('group1', 200, 200, 1000, 400)">添加容器1</a>&nbsp;
+<a onClick="window.joyuweb.removeGoup('group1')">移除容器1</a>&nbsp;
+<a onClick="window.joyuweb.addImgView('group1', 'img1', 0, 0, -2, -2, 'http://112.50.251.22:8090/assets/img/poster/recommend/ap8_0.png')">往容器1添加图片1</a>&nbsp;
+<a onClick="window.joyuweb.removeView('img1')">移除图片1</a>&nbsp;
+<a onClick="window.joyuweb.addTxtView('group1', 'txt1', 210, 50, -2, -2, 20, '文本1', '#ff0000', '#00ff00')">往容器1添加文本1</a>&nbsp;
+<a onClick="window.joyuweb.removeView('txt1')">移除文本1</a>&nbsp;
+<a onClick="window.joyuweb.addTxtView('group1', 'txt2', 210, 157, 300, 100, 20, '文本2', '#ff0000', '#00ff00')">往容器1添加文本2</a>&nbsp;
+<a onClick="window.joyuweb.removeView('txt2')">移除文本2</a>&nbsp;
+<a onClick="window.joyuweb.scrollTo('group1', 810, 10, 1000, 7)">容器1滚动到坐标(810, 10)</a>&nbsp;
+<a onClick="window.joyuweb.scrollTo('group1', 0, 0)">容器1滚动到坐标(0, 0)</a>&nbsp;
+<!--<a onClick="window.joyuweb.setImg('img0', 'https://qq1728744610.github.io/TestHtml/1541057347011242.gif')">修改图片0的地址</a>&nbsp;-->
+<a onclick="window.joyuweb.zoomView('img0', 1, 1.5, 200)">图片0放大1.5倍</a>&nbsp;
+<a onclick="window.joyuweb.zoomView('img0', 1.5, 1, 200)">图片0恢复大小</a>&nbsp;
+<!--public void moveFrame(final int left, final int top, final int width, final int height, final int radius)-->
+<a onclick="window.joyuweb.moveFrame(20, 300, 100, 50, 10)">1移动飞框</a>&nbsp;
+<a onclick="window.joyuweb.moveFrame(340, 360, 200, 200, 20)">2移动飞框</a>&nbsp;
+<a onclick="window.joyuweb.moveFrame(150, 570, 100, 100, 100)">3移动飞框</a>&nbsp;
+<a onClick="window.joyuweb.addGroup('group0', 'group2', 0, 0, 300, 400)">往容器0添加容器2</a>&nbsp;
+<a onClick="window.joyuweb.removeGoup('group2')">移除容器2</a>&nbsp;
+<a onClick="window.joyuweb.addImgView('group2', 'img2', 50, 30, 198, 347, 'http://112.50.251.22:8090/assets/img/poster/recommend/ap8_0.png')">往容器2添加图片2</a>&nbsp;
+<a onClick="window.joyuweb.removeView('img2')">移除图片2</a>&nbsp;
+<a onClick="window.joyuweb.nullJs()">测试空接口</a>&nbsp;
+<a onclick="window.joyuweb.clearGroup('group1')">清空容器1</a>
+<a onclick="window.joyuweb.removeAll()">移除所有容器控件</a>
+<a onClick="window.joyuweb.setTxt('txt1', '文字被修改')">修改文本控件1的文字</a>&nbsp;
+<a onClick="window.joyuweb.setTxt('txt2', '文字被修改')">修改文本控件2的文字</a>&nbsp;
+<a onClick="window.joyuweb.setTxtColor('txt1', '#0000ff')">修改文本控件1字体颜色</a>&nbsp;
+<a onClick="window.joyuweb.setViewBgColor('txt1', '#123456')">修改文本控件1背景颜色</a>&nbsp;
+<a onClick="window.joyuweb.moveView('img0', 800, 100, 1000, 6)">图片0移动到坐标(800, 100)</a>&nbsp;
+<a onClick="window.joyuweb.moveView('img0', 0, 0)">图片0移动到坐标(0, 0)</a>&nbsp;
+<a onClick="window.joyuweb.testSetImg()">测试setImg</a>
+<!--<a onClick="window.joyuweb.setViewBgColor('img0', '#123456')">修改图片控件0背景颜色</a>&nbsp;-->
+</body>
+</html>

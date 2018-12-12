@@ -3,43 +3,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=GBK"/>
     <script type="text/javascript">
-		 startTest()
-
-		 function startTest(){
-            var imgUrls = ['http://112.50.251.22:8090/assets/img/poster/recommend/ddd.png',
-                'http://112.50.251.22:8090/assets/img/poster/recommend/ddd1.png',
-                'http://112.50.251.22:8090/assets/img/poster/recommend/ddd3.png',
-                'http://112.50.251.22:8090/assets/img/poster/recommend/dddd2.png',
-                'http://112.50.251.22:8090/assets/img/poster/recommend/dddd4.png',
-                'http://112.50.251.22:8090/assets/img/poster/recommend/dddd5.png',
-                'http://112.50.251.22:8090/assets/img/poster/recommend/fp4_0.png',
-                'http://112.50.251.22:8090/assets/img/poster/recommend/fp5_0.png',
-                'http://112.50.251.22:8090/assets/img/poster/recommend/fp6_0.png',
-                'http://112.50.251.22:8090/assets/img/poster/recommend/fp7_0.png',
-                'http://112.50.251.22:8090/assets/img/poster/recommend/fp8_0.png',
-                'http://112.50.251.22:8090/assets/img/poster/recommend/fp9_0.png']
-
-            joyuweb.addGroup('group0', 0, 0, 1000, 400)
-            joyuweb.addImgView('group0', 'img0', 0, 0, -2, -2, '')
-            for(var i = 0; i < 10000 ; i++){
-                joyuweb.setImg('img0', imgUrls[i%12]);
-                sleep(50);
-            }
-        }
-
-        /**
-        *  睡眠函数
-        *  @param numberMillis -- 要睡眠的毫秒数
-        */
-        function sleep(numberMillis) {
-            var now = new Date();
-            var exitTime = now.getTime() + numberMillis;
-            while (true) {
-                now = new Date();
-                if (now.getTime() > exitTime)
-                    return;
-                }
-        }
+	window.joyuweb.addGroup('group0', 0, 0, 1280, 720);
+        window.joyuweb.addImgView('group0', 'img0', 0, 0, -2, -2, 'http://112.50.251.22:8090/assets/img/poster/recommend/ap8_0.png');
     </script>
     <title>测试页面</title>
 </head>

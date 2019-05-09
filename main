@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta name="page-view-size" content="1280*720">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="/assets/js/gdds.js"></script>
+    <title>apploading</title>
+
+    <script type="text/javascript">
+        var reDownloadHostTag = false;
+        var reInstallPluginTag = false;
+
+        var HostUpdateInfo = {
+            "allowUpateFlag": 0,
+            "versionCode": 47,
+            "versionName": "4.7",
+            "downloadUrl": "http://chongqingyd.joyutech.com:8093/assets/apk/release/app-kid-cqyd-release-4.7-main.apk"
+        };
+        var PluginUpdateInfo = {
+            "allowUpateFlag": 0,
+            "packageName": "com.joyu.kid",
+            "className": "com.joyu.kid.HomeActivity",
+            "versionCode": 36,
+            "versionName": "3.6",
+            "downloadUrl": "http://223.111.205.114/app-kid-cqyd-release-3.6.apk"
+        };
+        var SplashInfo = {
+            "defaultFlag": 0,
+            "startTime": 946656000000,
+            "endTime": 32472115200000,
+            "imgUrl": "http://chongqingyd.joyutech.com:8093/assets/app/splash/1539679592183564.png"
+        };
+
+        var packageName = PluginUpdateInfo.packageName;
+        var className = PluginUpdateInfo.className;
+
+        setSplash();
+        updateHost();
+
+        // 主程序更新
+        function updateHost() {
+            var hostVersionCode = window.joyuhost.getHostVersionCode();
+            hostVersionCode = Number(hostVersionCode);
+            var updateHostVersionCode = Number(HostUpdateInfo.versionCode || -1);
+            $g.warn('主程序版本与更新版本对比：' + hostVersionCode + ' | ' + updateHostVersionCode);
+            if (HostUpdateInfo.allowUpateFlag == '1' && !isNaN(hostVersionCode) && !isNaN(updateHostVersionCode) && hostVersionCode < updateHostVersionCode) {
+                $g.warn('主程序执行更新');
+                installHost(HostUpdateInfo.downloadUrl);
+            } else {
+                updatePlugin();
+            }
+        }
+
+        // 插件更新
+        function updatePlugin() {
+            if (window.joyuhost.isPluginInstalled(packageName)) {
+                var pluginVersionCode = window.joyuhost.getPluginVersion(packageName);
+                pluginVersionCode = Number(pluginVersionCode);
+                var updatePluginVersionCode = Number(PluginUpdateInfo.versionCode || -1);
+                $g.warn('插件版本与更新版本对比：' + pluginVersionCode + ' | ' + updatePluginVersionCode);
+                if (PluginUpdateInfo.allowUpateFlag == '1' && !isNaN(pluginVersionCode) && !isNaN(updatePluginVersionCode) && pluginVersionCode < updatePluginVersionCode) {
+                    // 升级
+                    $g.warn('插件执行更新');
+                    installPluginIn(PluginUpdateInfo.downloadUrl);
+                } else {
+                    startPluginIn();
+                }
+            } else {
+                // 安装
+                $g.warn('插件执行安装');
+                installPluginIn(PluginUpdateInfo.downloadUrl);
+            }
+        }
+
+        // 闪屏设置
+        function setSplash() {
+            if (SplashInfo.defaultFlag == '1') {
+                $g.warn('设默认闪屏:' + new Date().getTime());
+                window.joyuhost.setDefaultSplash('');
+            } else {
+                $g.warn('设闪屏:' + SplashInfo.startTime + ' | ' + SplashInfo.endTime);
+                window.joyuhost.setTimeoutSplash(SplashInfo.imgUrl, SplashInfo.startTime, SplashInfo.endTime);
+            }
+        }
+
+        //启动插件
+        function startPluginIn() {
+            $g.warn('插件执行启动');
+            // 闪屏时间最长为1秒
+            var SplashTime = 1000;
+            var startTime = window.joyuhost.getStartTime();
+            var nowTime = new Date().getTime();
+            var waitTime = SplashTime - (nowTime - startTime);
+
+            setTimeout(function () {
+                //主程序版本号是46的话用新接口打开插件
+                window.joyuhost.openPluginActivity(packageName, className, true, 'openPluginCallback');
+            }, waitTime > 0 ? waitTime : 0);
+        }
+
+        //取消安装主程序的回调
+        function cancelInstallHost() {
+            $g.warn('用户取消安装新的主程序');
+            updatePlugin()
+        }
+
+        //安装主程序
+        function installHost(downloadUrl) {
+            if (!downloadUrl) return downloadHostFail();
+            window.joyuhost.updateHostApp(downloadUrl, 'progressEvent', '', 'downloadHostFail', 'cancelInstallHost');
+        }
+
+        //安装插件
+        function installPluginIn(downloadUrl) {
+            if (!downloadUrl) {
+                $g.warn('插件下载地址错误');
+                return;
+            }
+            window.joyuhost.installPlugin(downloadUrl, 'progressEvent', 'installPluginSuccess', 'installPluginFail');
+        }
+
+        //下载进度
+        function progressEvent(current, total) {
+        }
+
+        //安装插件成功回调
+        function installPluginSuccess(url) {
+            if (reInstallPluginTag) {
+                $g.warn('重装插件成功');
+            } else {
+                $g.warn('插件安装成功');
+            }
+            startPluginIn();
+        }
+
+        //安装插件失败回调
+        function installPluginFail(url) {
+            if (reInstallPluginTag) {
+                $g.warn('重装插件失败，退出app');
+                exitApp();
+            } else {
+                $g.warn('插件安装失败');
+                reInstallPlugin();
+            }
+        }
+
+        //下载主程序失败回调
+        function downloadHostFail() {
+            $g.warn('主程序下载失败');
+            if (reDownloadHostTag) {
+                updatePlugin();
+            } else {
+                reDownloadHostTag = true;
+                deleteAppCache();
+                $g.warn('再次进入主程序更新流程');
+                updateHost();
+            }
+        }
+
+        //打开插件成功或失败的回调
+        function openPluginCallback(success) {
+            $g.warn('插件启动' + (success ? '成功！' : '失败！'));
+            //打开插件失败，有可能是插件文件丢失了，清掉缓存和插件文件重新安装
+            if (!success) {
+                reInstallPlugin();
+            }
+        }
+
+        //重装插件
+        function reInstallPlugin() {
+            if (!reInstallPluginTag) {
+                reInstallPluginTag = true;
+                uninstallPlugin(packageName);
+                deleteAppCache();
+                $g.warn('开始重装插件');
+                installPluginIn(PluginUpdateInfo.downloadUrl);
+            } else {
+                $g.warn('重装插件后启动仍然失败');
+                uninstallPlugin(PluginUpdateInfo.packageName);
+                deleteAppCache();
+                exitApp();
+            }
+        }
+
+        //卸载插件
+        function uninstallPlugin(packageName) {
+            $g.warn('卸载插件: ' + packageName);
+            window.joyuhost.unInstallPlugin(packageName);
+        }
+
+        //删除app缓存
+        function deleteAppCache() {
+            $g.warn('删除app缓存');
+            window.joyuhost.deleteCache();
+        }
+
+        function exitApp() {
+            $g.warn('退出App');
+            window.joyuhost.exitApp(true);
+        }
+
+    </script>
+</head>
+
+<body leftmargin="0" topmargin="0" bgcolor="#000000">
+</body>
+</html>
